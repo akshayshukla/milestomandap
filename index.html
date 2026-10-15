@@ -46,7 +46,7 @@ section{padding-block:80px;position:relative}
 .op{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:var(--paper);perspective:1600px;overflow:hidden}
 .op[hidden]{display:none}
 .op .hint{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font:500 12px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
-.pp{position:relative;width:min(330px,76vw);aspect-ratio:3/4.25;max-width:100%;transform-style:preserve-3d;transition:transform 1.4s cubic-bezier(.6,0,.2,1)}
+.pp{grid-area:1/1;position:relative;width:min(330px,76vw);aspect-ratio:3/4.25;max-width:100%;transform-style:preserve-3d;transition:transform 1.4s cubic-bezier(.6,0,.2,1)}
 .pp .page{position:absolute;inset:0;border-radius:6px 14px 14px 6px;background:var(--card);box-shadow:0 30px 60px -24px rgba(43,55,33,.55),inset 0 0 0 1px rgba(168,121,46,.25);display:grid;align-content:start;padding-top:9%!important;justify-items:center;text-align:center;padding:24px;overflow:hidden;
  background-image:repeating-linear-gradient(45deg,rgba(168,121,46,.05) 0 2px,transparent 2px 9px),repeating-linear-gradient(-45deg,rgba(125,148,115,.05) 0 2px,transparent 2px 9px)}
 .pp .page .gan{width:clamp(30px,9vw,40px);height:auto;margin-bottom:6px}
@@ -57,6 +57,7 @@ section{padding-block:80px;position:relative}
 .pp .page .inv{font:italic 1.02rem/1.35 var(--serif);color:var(--ink2);max-width:22ch}
 .stamp{position:absolute;right:5%;bottom:2.5%;width:34%;aspect-ratio:1;color:#9b3b3b;opacity:0;transform:scale(2.4) rotate(-30deg)}
 .stamp svg{width:100%;height:100%}
+.stamps{grid-area:1/1;position:relative;z-index:3;width:min(330px,76vw);aspect-ratio:3/4.25;max-width:100%;pointer-events:none}
 .fst{position:absolute;top:2.2%;width:30%;opacity:0;pointer-events:none}
 .fst svg{width:100%;height:auto;display:block}
 .fs1{left:3%;color:#3f5a34;transform:scale(2.4) rotate(-26deg)}
@@ -81,7 +82,7 @@ section{padding-block:80px;position:relative}
 .cover .chip::after{content:"";width:14px;height:8px;border:1px solid var(--gold2);border-radius:2px}
 .op.open .cover{transform:rotateY(-168deg)}
 .op.open .hint{opacity:0}
-.op.fly .pp{transform:translateY(-8vh) scale(.6) rotate(-6deg);opacity:0;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s .2s}
+.op.fly .stamps,.op.fly .pp{transform:translateY(-8vh) scale(.6) rotate(-6deg);opacity:0;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s .2s}
 .op.fly{background:transparent;transition:background .8s}
 
 /* ===== top controls ===== */
@@ -289,9 +290,7 @@ section{padding-block:80px;position:relative}
       <div class="nm">Akshay<i>&amp;</i>Shristy</div>
       <div class="inv">request the pleasure of your company at their wedding in Rajnandgaon</div>
       <div class="lbl" style="margin-top:14px">12 · 12 · 2026</div>
-      <div class="fst fs1" role="img" aria-label="Stamp: Shukla Family, groom side, Rajnandgaon"><svg viewBox="0 0 140 84" aria-hidden="true"><g fill="none" stroke="currentColor"><ellipse cx="70" cy="42" rx="67" ry="39" stroke-width="2.6"/><ellipse cx="70" cy="42" rx="60" ry="32" stroke-width="1"/></g><g fill="currentColor" text-anchor="middle" font-family="Jost,sans-serif"><text x="70" y="27" font-size="7.4" font-weight="500" letter-spacing="1.6">GROOM SIDE</text><text x="70" y="47" font-size="14.5" font-weight="600" letter-spacing=".6">SHUKLA</text><text x="70" y="57.5" font-size="7" font-weight="500" letter-spacing="2.2">FAMILY</text><text x="70" y="68" font-size="5.6" letter-spacing="1.2">✈ RAJNANDGAON</text></g></svg></div>
-      <div class="fst fs2" role="img" aria-label="Stamp: Pachori Family, bride side, Bhopal"><svg viewBox="0 0 140 84" aria-hidden="true"><g fill="none" stroke="currentColor"><rect x="3" y="3" width="134" height="78" rx="9" stroke-width="2.6"/><rect x="9.5" y="9.5" width="121" height="65" rx="5" stroke-width="1"/></g><g fill="currentColor" text-anchor="middle" font-family="Jost,sans-serif"><text x="70" y="25" font-size="7.4" font-weight="500" letter-spacing="1.6">BRIDE SIDE</text><text x="70" y="46" font-size="14.5" font-weight="600" letter-spacing=".6">PACHORI</text><text x="70" y="56.5" font-size="7" font-weight="500" letter-spacing="2.2">FAMILY</text><text x="70" y="67" font-size="5.6" letter-spacing="1.2">✈ BHOPAL</text></g></svg></div>
-      <div class="stamp"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="currentColor"><circle cx="60" cy="60" r="56" stroke-width="3"/><circle cx="60" cy="60" r="46" stroke-width="1.5"/></g><path id="sc" d="M60 60m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0" fill="none"/><text font-family="Jost,sans-serif" font-size="8.4" letter-spacing="1.5" fill="currentColor"><textPath href="#sc">ARRIVED · RAJNANDGAON · CHHATTISGARH · </textPath></text><text x="60" y="58" text-anchor="middle" font-family="Jost,sans-serif" font-weight="600" font-size="15" fill="currentColor">12 DEC</text><text x="60" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="currentColor">2026</text></svg></div>
+
     </div>
     <button class="cover" id="cover" type="button" aria-label="Open the passport invitation" data-test>
       <span class="f">
@@ -317,6 +316,11 @@ section{padding-block:80px;position:relative}
       </span>
       <span class="b"></span>
     </button>
+  </div>
+  <div class="stamps" aria-hidden="true">
+      <div class="fst fs1" role="img" aria-label="Stamp: Shukla Family, groom side, Rajnandgaon"><svg viewBox="0 0 140 84" aria-hidden="true"><g fill="none" stroke="currentColor"><ellipse cx="70" cy="42" rx="67" ry="39" stroke-width="2.6"/><ellipse cx="70" cy="42" rx="60" ry="32" stroke-width="1"/></g><g fill="currentColor" text-anchor="middle" font-family="Jost,sans-serif"><text x="70" y="27" font-size="7.4" font-weight="500" letter-spacing="1.6">GROOM SIDE</text><text x="70" y="47" font-size="14.5" font-weight="600" letter-spacing=".6">SHUKLA</text><text x="70" y="57.5" font-size="7" font-weight="500" letter-spacing="2.2">FAMILY</text><text x="70" y="68" font-size="5.6" letter-spacing="1.2">✈ RAJNANDGAON</text></g></svg></div>
+      <div class="fst fs2" role="img" aria-label="Stamp: Pachori Family, bride side, Bhopal"><svg viewBox="0 0 140 84" aria-hidden="true"><g fill="none" stroke="currentColor"><rect x="3" y="3" width="134" height="78" rx="9" stroke-width="2.6"/><rect x="9.5" y="9.5" width="121" height="65" rx="5" stroke-width="1"/></g><g fill="currentColor" text-anchor="middle" font-family="Jost,sans-serif"><text x="70" y="25" font-size="7.4" font-weight="500" letter-spacing="1.6">BRIDE SIDE</text><text x="70" y="46" font-size="14.5" font-weight="600" letter-spacing=".6">PACHORI</text><text x="70" y="56.5" font-size="7" font-weight="500" letter-spacing="2.2">FAMILY</text><text x="70" y="67" font-size="5.6" letter-spacing="1.2">✈ BHOPAL</text></g></svg></div>
+      <div class="stamp"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="currentColor"><circle cx="60" cy="60" r="56" stroke-width="3"/><circle cx="60" cy="60" r="46" stroke-width="1.5"/></g><path id="sc" d="M60 60m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0" fill="none"/><text font-family="Jost,sans-serif" font-size="8.4" letter-spacing="1.5" fill="currentColor"><textPath href="#sc">ARRIVED · RAJNANDGAON · CHHATTISGARH · </textPath></text><text x="60" y="58" text-anchor="middle" font-family="Jost,sans-serif" font-weight="600" font-size="15" fill="currentColor">12 DEC</text><text x="60" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="currentColor">2026</text></svg></div>
   </div>
   <div class="hint tr" data-i="tap">Tap the passport to open</div>
 </div>
