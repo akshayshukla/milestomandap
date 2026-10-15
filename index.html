@@ -260,6 +260,7 @@ section{padding-block:80px;position:relative}
  .row2{grid-template-columns:1fr}.conf .stamp2{right:20px;top:auto;bottom:60px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+@media (prefers-reduced-motion:reduce){.op.open .fst{opacity:.82;transform:scale(1) rotate(var(--r))}.op.open .stamp{opacity:.85;transform:scale(1) rotate(-14deg)}}
 </style>
 
 </head>
@@ -505,8 +506,8 @@ const TARGET=new Date('2026-12-12T19:00:00+05:30'); // muhurat placeholder
 document.body.classList.add('locked');
 const GOLD=['#a8792e','#d6b06a','#f4dc9c','#df9e93','#7d9473'];
 $('#cover').addEventListener('click',()=>{const op=$('#op');if(op.classList.contains('open'))return;op.classList.add('open');
- setTimeout(()=>{op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s')},RM?0:5600);
- setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');$('#hero').classList.add('go')},RM?50:6500)});
+ setTimeout(()=>{op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s')},RM?3800:5600);
+ setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');$('#hero').classList.add('go')},RM?3900:6500)});
 /* ---------- clocks ---------- */
 function face(svg){let s='<circle cx="50" cy="50" r="46" fill="#fbf7f0" stroke="#a8792e" stroke-width="1.5"/><circle cx="50" cy="50" r="41" fill="none" stroke="#a8792e" stroke-opacity=".35"/>';for(let i=0;i<12;i++){const a=i*Math.PI/6;s+=`<line x1="${50+Math.sin(a)*36}" y1="${50-Math.cos(a)*36}" x2="${50+Math.sin(a)*(i%3?38:33)}" y2="${50-Math.cos(a)*(i%3?38:33)}" stroke="#2b3721" stroke-width="${i%3?1:2}"/>`}
  s+='<line class="h" x1="50" y1="50" x2="50" y2="28" stroke="#2b3721" stroke-width="3" stroke-linecap="round"/><line class="m" x1="50" y1="50" x2="50" y2="18" stroke="#2b3721" stroke-width="2" stroke-linecap="round"/><line class="s" x1="50" y1="56" x2="50" y2="14" stroke="#a8792e" stroke-width="1"/><circle cx="50" cy="50" r="3" fill="#a8792e"/>';svg.innerHTML=s}
