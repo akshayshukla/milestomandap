@@ -62,7 +62,6 @@ section{padding-block:80px;position:relative}
 .fs1{left:3%;color:#3f5a34;transform:scale(2.4) rotate(-26deg)}
 .fs2{right:3%;color:#b0525e;transform:scale(2.4) rotate(24deg)}
 /* stamps are driven by JS-added .on classes + transitions (Safari-safe: no delayed keyframes, no var() in keyframes) */
-.fst,.stamp{will-change:transform,opacity;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .fs1.on{opacity:.82;transform:scale(1) rotate(-9deg)}
 .fs2.on{opacity:.82;transform:scale(1) rotate(8deg)}
 .stamp.on{opacity:.85;transform:scale(1) rotate(-14deg)}
@@ -507,10 +506,8 @@ document.body.classList.add('locked');
 const GOLD=['#a8792e','#d6b06a','#f4dc9c','#df9e93','#7d9473'];
 $('#cover').addEventListener('click',()=>{const op=$('#op');if(op.classList.contains('open'))return;op.classList.add('open');
  [['.fs1',1250,'scale(2.4) rotate(-26deg)','scale(1) rotate(-9deg)',.82],['.fs2',1850,'scale(2.4) rotate(24deg)','scale(1) rotate(8deg)',.82],['#op .stamp',2450,'scale(2.4) rotate(-30deg)','scale(1) rotate(-14deg)',.85]].forEach(([q,t,from,to,o])=>setTimeout(()=>{const el=$(q);
-  if(RM||!el.animate){el.classList.add('on');return}
-  // Web Animations API: runs the zoom-in the same way in Safari and Chrome
-  const an=el.animate([{opacity:0,transform:from},{opacity:o,transform:to}],{duration:480,easing:'cubic-bezier(.3,1.6,.5,1)',fill:'forwards'});
-  an.onfinish=()=>{el.classList.add('on');an.cancel()}},RM?0:t));
+  el.classList.add('on'); // final, visible state first: the stamp shows even if the zoom below does not run
+  if(!RM&&el.animate)try{el.animate([{opacity:0,transform:from},{opacity:o,transform:to}],{duration:480,easing:'cubic-bezier(.3,1.6,.5,1)'})}catch(e){}},RM?0:t));
  setTimeout(()=>{op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s')},RM?3800:5600);
  setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');$('#hero').classList.add('go')},RM?3900:6500)});
 /* ---------- clocks ---------- */
