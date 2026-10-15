@@ -59,12 +59,13 @@ section{padding-block:80px;position:relative}
 .stamp svg{width:100%;height:100%}
 .fst{position:absolute;top:2.2%;width:30%;opacity:0;pointer-events:none}
 .fst svg{width:100%;height:auto;display:block}
-.fs1{left:3%;color:#3f5a34;--r:-9deg;transform:scale(2.4) rotate(-26deg)}
-.fs2{right:3%;color:#b0525e;--r:8deg;transform:scale(2.4) rotate(24deg)}
-.op.open .fs1{animation:fstamp .45s 1.25s cubic-bezier(.3,1.6,.5,1) forwards}
-.op.open .fs2{animation:fstamp .45s 1.85s cubic-bezier(.3,1.6,.5,1) forwards}
-@keyframes fstamp{to{opacity:.82;transform:scale(1) rotate(var(--r))}}
-.op.open .stamp{animation:stamp .5s 2.45s cubic-bezier(.3,1.6,.5,1) forwards}
+.fs1{left:3%;color:#3f5a34;transform:scale(2.4) rotate(-26deg)}
+.fs2{right:3%;color:#b0525e;transform:scale(2.4) rotate(24deg)}
+/* stamps are driven by JS-added .on classes + transitions (Safari-safe: no delayed keyframes, no var() in keyframes) */
+.fst,.stamp{-webkit-transform-style:flat;transition:opacity .2s ease-out,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.fs1.on{opacity:.82;transform:scale(1) rotate(-9deg)}
+.fs2.on{opacity:.82;transform:scale(1) rotate(8deg)}
+.stamp.on{opacity:.85;transform:scale(1) rotate(-14deg)}
 @keyframes stamp{to{opacity:.85;transform:scale(1) rotate(-14deg)}}
 .cover{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.3s cubic-bezier(.6,0,.2,1);cursor:pointer;border:0;padding:0;background:none;border-radius:6px 14px 14px 6px}
 .cover .f,.cover .b{position:absolute;inset:0;border-radius:6px 14px 14px 6px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
@@ -260,7 +261,6 @@ section{padding-block:80px;position:relative}
  .row2{grid-template-columns:1fr}.conf .stamp2{right:20px;top:auto;bottom:60px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
-@media (prefers-reduced-motion:reduce){.op.open .fst{opacity:.82;transform:scale(1) rotate(var(--r))}.op.open .stamp{opacity:.85;transform:scale(1) rotate(-14deg)}}
 </style>
 
 </head>
@@ -506,6 +506,7 @@ const TARGET=new Date('2026-12-12T19:00:00+05:30'); // muhurat placeholder
 document.body.classList.add('locked');
 const GOLD=['#a8792e','#d6b06a','#f4dc9c','#df9e93','#7d9473'];
 $('#cover').addEventListener('click',()=>{const op=$('#op');if(op.classList.contains('open'))return;op.classList.add('open');
+ [['.fs1',1250],['.fs2',1850],['#op .stamp',2450]].forEach(([q,t])=>setTimeout(()=>$(q).classList.add('on'),RM?0:t));
  setTimeout(()=>{op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s')},RM?3800:5600);
  setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');$('#hero').classList.add('go')},RM?3900:6500)});
 /* ---------- clocks ---------- */
