@@ -279,6 +279,38 @@ section{padding-block:80px;position:relative}
 .dots{display:flex;justify-content:center;gap:7px;margin-top:4px}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(168,121,46,.3);transition:width .3s,background .3s}.dots i.on{width:20px;border-radius:99px;background:var(--gold)}
 .swipeh{margin:8px 0 0;font:500 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
+/* ---- family lane ---- */
+.flane{max-width:640px;margin:34px auto 0;text-align:left;background:var(--card);border-radius:16px;box-shadow:0 18px 40px -32px rgba(43,55,33,.7),inset 0 0 0 1px rgba(168,121,46,.25);overflow:hidden}
+.flane summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"k o x" "t t t";gap:2px 10px;align-items:center;padding:16px 18px;border-bottom:2px dashed transparent}
+.flane summary::-webkit-details-marker{display:none}
+.flane[open] summary{border-bottom-color:rgba(168,121,46,.35)}
+.flane .fk{grid-area:k;font:500 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.flane .ft{grid-area:t;font:500 1.45rem/1.1 var(--serif);color:var(--ink)}
+.flane .fo{grid-area:o;justify-self:end;font:500 10px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.flane[open] .fo{visibility:hidden}
+.flane .fx2{grid-area:x;width:26px;height:26px;border-radius:50%;border:1px solid var(--gold2);position:relative;transition:transform .3s}
+.flane .fx2::before,.flane .fx2::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:var(--gold);transform:translate(-50%,-50%)}
+.flane .fx2::after{transform:translate(-50%,-50%) rotate(90deg)}
+.flane[open] .fx2{transform:rotate(45deg)}
+.fbody{padding:14px 18px 20px}
+.fint{margin:0 0 12px;color:var(--ink2);font-style:italic}
+.ftabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ftabs button{flex:1 1 200px;cursor:pointer;border:1px solid rgba(43,55,33,.2);background:transparent;border-radius:99px;padding:9px 12px;font:500 11.5px var(--ui);letter-spacing:.06em;color:var(--ink2)}
+.ftabs button.g[aria-selected=true]{background:#3f5a34;border-color:#3f5a34;color:#fff}
+.ftabs button.b[aria-selected=true]{background:#b0525e;border-color:#b0525e;color:#fff}
+.fday+.fday{margin-top:16px}
+.fday h4{margin:0 0 8px;font:500 10.5px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fday ul{list-style:none;margin:0;padding:0 0 0 6px;border-left:1.5px dashed rgba(168,121,46,.45)}
+.fday li{position:relative;display:grid;grid-template-columns:18px 1fr;gap:8px;padding:6px 0}
+.fday li .st{width:12px;height:12px;border-radius:50%;margin:6px 0 0 -13px;box-shadow:0 0 0 3px var(--card)}
+.fday ul.g .st{background:#3f5a34}.fday ul.b .st{background:#b0525e}
+.fday li b{font:500 1.12rem var(--serif);color:var(--ink);margin-right:8px}
+.fday li p{margin:2px 0 0;font-size:.93rem;color:var(--ink2);line-height:1.4}
+.tg{display:inline-block;vertical-align:2px;font:500 9px var(--ui);letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:99px}
+.tg.fam{color:#3f5a34;background:rgba(63,90,52,.1)}.tg.all{color:var(--gold);background:rgba(168,121,46,.12)}
+.fpanel[hidden]{display:none!important}
+.fsoon{margin:6px 0;color:var(--muted);font-style:italic}
+
 /* ===== closing ===== */
 .closing{text-align:center;padding-block:60px 120px}
 .closing .lg{width:min(420px,90%);aspect-ratio:880/728;max-width:100%;margin:0 auto;background:center/contain no-repeat;mix-blend-mode:multiply}
@@ -416,6 +448,15 @@ section{padding-block:80px;position:relative}
   <h2 class="rv">Five <em>celebrations</em></h2>
   <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon. Timings to be announced.</p>
   <div class="optC"><div class="passes deck" id="passesC"></div><div class="dots" id="dotsC" aria-hidden="true"></div><p class="swipeh">Swipe for all 5 →</p></div>
+  <details class="flane rv" id="flane">
+    <summary><span class="fk">✈ Family lane</span><span class="ft">Rituals &amp; poojas</span><span class="fo">Tap to view</span><i class="fx2" aria-hidden="true"></i></summary>
+    <div class="fbody">
+      <p class="fint">Mostly for family, but everyone is welcome to join and watch.</p>
+      <div class="ftabs" role="tablist"><button role="tab" aria-selected="true" data-t="g" class="g">Shukla family · Groom's side</button><button role="tab" aria-selected="false" data-t="b" class="b">Pachori family · Bride's side</button></div>
+      <div class="fpanel" id="fp-g" role="tabpanel"></div>
+      <div class="fpanel" id="fp-b" role="tabpanel" hidden></div>
+    </div>
+  </details>
 </section>
 
 <!-- TRAVEL -->
@@ -697,6 +738,35 @@ const SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbzlaKDryRRVxXatqEe
   }catch(x){err.textContent='Something went wrong. Please check your connection and try again.';err.hidden=false}
   finally{btn.disabled=false;btn.textContent='Submit arrival card ✈'}
  });
+})();
+/* ---------- family lane: rituals by side ---------- */
+const RIT={
+ g:[{d:'Day 1 · Fri 11 Dec',items:[
+   ['Choolmati','The women of the family bring home sacred soil and offer prayers to Mother Earth to begin the wedding rites.'],
+   ['Mandap Pooja','Prayers to bless the mandap where the wedding rituals will take place.'],
+   ['Mehandi','Henna, music and chai.',1],
+   ['Dautela','A family visit to the Shitla Mata temple to seek the goddess\'s blessings.'],
+   ['Sangeet','Two families, one dance floor.',1]]},
+  {d:'Day 2 · Sat 12 Dec',items:[
+   ['Mandap Haldi','Turmeric is applied to the groom under the mandap by the family.'],
+   ['Haldi Carnival','The big, colourful haldi celebration with everyone.',1],
+   ['Matrika Pujan','Worship of the Matrikas, the divine mothers, for their blessings on the couple.'],
+   ['Mai Mauri','The groom\'s mother blesses him before he wears the maur (wedding crown).'],
+   ['Nahdori','The groom\'s ceremonial bath before he sets out for the wedding.'],
+   ['Barat Prasthan','The baraat sets off with music and dancing.'],
+   ['Reception','Dinner, toasts and dancing.',1]]},
+  {d:'Day 3 · Sun 13 Dec (from 2 AM)',items:[
+   ['Phere','Seven vows around the sacred fire.',1],
+   ['Vidai','The bride\'s farewell from her family, early in the morning.'],
+   ['Muhdekhai','The new bride is welcomed home and the family see her face and give blessings and gifts.'],
+   ['Kankad Maur','The sacred threads tied on the couple are untied, a playful moment between them.'],
+   ['Kaudi Pasa','The couple play a light-hearted game with cowrie shells, said to show who will win more often.']]}],
+ b:[]
+};
+(function(){const row=([n,t,all])=>`<li><i class="st"></i><div><b>${n}</b>${all?'<span class="tg all">Everyone</span>':'<span class="tg fam">Family</span>'}<p>${t}</p></div></li>`;
+ const panel=(k,days)=>days.length?days.map(g=>`<div class="fday"><h4>${g.d}</h4><ul class="${k}">${g.items.map(row).join('')}</ul></div>`).join(''):`<p class="fsoon">Pachori family rituals will be shared here soon.</p>`;
+ $('#fp-g').innerHTML=panel('g',RIT.g);$('#fp-b').innerHTML=panel('b',RIT.b);
+ $$('.ftabs button').forEach(b=>b.onclick=()=>{$$('.ftabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$('#fp-g').hidden=b.dataset.t!=='g';$('#fp-b').hidden=b.dataset.t!=='b'});
 })();
 /* ---------- itinerary illustrations: draw in when scrolled into view ---------- */
 (function(){const els=$$('.il');if(RM||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('go'));return}
