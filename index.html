@@ -268,6 +268,17 @@ section{padding-block:80px;position:relative}
 @keyframes ilfl{from{transform:scale(1,1)}to{transform:scale(.92,1.1) skewX(-3deg)}}
 @media (prefers-reduced-motion:reduce){.il .pt{display:none}}
 
+/* ---- itinerary: swipeable boarding passes ---- */
+/* option 3: swipe deck (all widths) */
+.optC .deck{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px 16px 14px;margin-inline:-16px;scrollbar-width:none}
+.optC .deck::-webkit-scrollbar{display:none}
+.optC .deck .ev{flex:0 0 min(84%,420px);scroll-snap-align:center;grid-template-columns:1fr 92px}
+.optC .deck .ev .il{grid-column:1/-1;width:100%;height:260px;min-height:0;border-right:0;border-bottom:1px solid rgba(168,121,46,.18)}
+.optC .deck .ev .il img{object-position:50% 20%}
+.optC .deck .ev:hover{transform:none}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:4px}.dots i{width:7px;height:7px;border-radius:50%;background:rgba(168,121,46,.3);transition:width .3s,background .3s}.dots i.on{width:20px;border-radius:99px;background:var(--gold)}
+.swipeh{margin:8px 0 0;font:500 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
 /* ===== closing ===== */
 .closing{text-align:center;padding-block:60px 120px}
 .closing .lg{width:min(420px,90%);aspect-ratio:880/728;max-width:100%;margin:0 auto;background:center/contain no-repeat;mix-blend-mode:multiply}
@@ -404,7 +415,7 @@ section{padding-block:80px;position:relative}
   <div class="cap rv tr" data-i="evK">The itinerary</div>
   <h2 class="rv">Five <em>celebrations</em></h2>
   <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon. Timings to be announced.</p>
-  <div class="passes" id="passes"></div>
+  <div class="optC"><div class="passes deck" id="passesC"></div><div class="dots" id="dotsC" aria-hidden="true"></div><p class="swipeh">Swipe for all 5 →</p></div>
 </section>
 
 <!-- TRAVEL -->
@@ -647,9 +658,13 @@ const EV=[
  {n:'Haldi',k:'haldi',hi:'हल्दी',ic:'🌼',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'Time TBC',where:'The Bliss International, Rajnandgaon',dress:'Sunshine yellow',c:['#e9c46a','#fff2c2'],note:'Turmeric, marigolds and laughter.'},
  {n:'Reception',k:'reception',hi:'स्वागत समारोह',ic:'✨',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'Time TBC',where:'The Bliss International, Rajnandgaon',dress:'Black tie',c:['#2b3721','#d6b06a'],note:'Dinner, toasts and dancing.'},
  {n:'Phera · The Wedding',k:'phera',sh:'Phera',hi:'फेरे',ic:'🔥',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'Muhurat to be confirmed',where:'The Bliss International, Rajnandgaon',dress:'Traditional Indian',c:['#9b2c2c','#d6b06a'],note:'Seven vows around the sacred fire.',star:true}];
-$('#passes').innerHTML=EV.map((e,i)=>`<article class="ev rv${e.star?' star':''}"><div class="il" style="--c:${e.c[1]}"><img src="${ART[e.k]}" alt="Akshay and Shristy at the ${e.sh||e.n}" decoding="async" draggable="false">${FX(e.k)}</div><div class="l"><div class="top"><span>Boarding pass ${String(i+1).padStart(2,'0')}/05</span><span>${e.date}${e.tbc?' <span class="tbc">TBC</span>':''}</span></div>
+const CARD=(e,i)=>`<article class="ev rv${e.star?' star':''}"><div class="il" style="--c:${e.c[1]}"><img src="${ART[e.k]}" alt="Akshay and Shristy at the ${e.sh||e.n}" decoding="async" draggable="false">${FX(e.k)}</div><div class="l"><div class="top"><span>Boarding pass ${String(i+1).padStart(2,'0')}/05</span><span>${e.date}${e.tbc?' <span class="tbc">TBC</span>':''}</span></div>
  <h3>${e.n}<small>${e.hi}</small></h3><p>${e.note}</p><div class="meta"><span>🕰 ${e.time}</span><a class="map" href="${VENUE_MAP}" target="_blank" rel="noopener">📍 ${e.where}</a><span><span class="sw"><i style="background:${e.c[0]}"></i><i style="background:${e.c[1]}"></i></span>${e.dress}</span></div></div>
- <div class="r"><div><div class="ic">${e.ic}</div><b>${e.day}</b><span>${e.mon} 2026</span></div></div></article>`).join('');
+ <div class="r"><div><div class="ic">${e.ic}</div><b>${e.day}</b><span>${e.mon} 2026</span></div></div></article>`;
+$('#passesC').innerHTML=EV.map(CARD).join('');
+(function(){const d=$('#passesC'),dots=$('#dotsC');dots.innerHTML=EV.map(()=>'<i></i>').join('');
+ const upd=()=>{const cs=[...d.children];let best=0,bd=1e9;const mid=d.scrollLeft+d.clientWidth/2;cs.forEach((c,k)=>{const m=c.offsetLeft+c.offsetWidth/2;const dd=Math.abs(m-mid);if(dd<bd){bd=dd;best=k}});[...dots.children].forEach((x,k)=>x.classList.toggle('on',k===best))};
+ d.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});upd()})();
 $('#rows').innerHTML=EV.map(e=>`<div><span>${e.date.split(' ').slice(1).join(' ').toUpperCase()}</span><span>${(e.sh||e.n).toUpperCase()}</span><span class="${e.star?'ok':''}">${e.star?'BOARDING':'SCHEDULED'}</span></div>`).join('');
 /* ---------- travel ---------- */
 const ic={train:'<rect x="6" y="3" width="12" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h12M9 21l2-4M15 21l-2-4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="9" cy="13.5" r="1" fill="currentColor"/><circle cx="15" cy="13.5" r="1" fill="currentColor"/>',plane:'<path d="M2 16l20-6-20-6 4 6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',doc:'<rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.5"/>',sun:'<circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" stroke="currentColor" stroke-width="1.5"/>',clock:'<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" fill="none"/>',bed:'<path d="M3 18V8M3 14h18v4M7 11h5a2 2 0 0 1 2 2v1M21 18v-5a3 3 0 0 0-3-3h-4" fill="none" stroke="currentColor" stroke-width="1.5"/>',car:'<path d="M3 15l2-5h14l2 5v3H3z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7.5" cy="18" r="1.5" fill="currentColor"/><circle cx="16.5" cy="18" r="1.5" fill="currentColor"/>'};
