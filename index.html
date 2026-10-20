@@ -665,7 +665,7 @@ const EV=[
  {n:'Sangeet',k:'sangeet',hi:'संगीत',ic:'💃',date:'Fri 11 Dec',day:'11',mon:'DEC',time:'6:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Festive glam',c:['#5a3e6b','#d6b06a'],note:'Two families, one dance floor.'},
  {n:'Haldi',k:'haldi',hi:'हल्दी',ic:'🌼',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'11:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Sunshine yellow',c:['#e9c46a','#fff2c2'],note:'Turmeric, marigolds and laughter.'},
  {n:'Reception',k:'reception',hi:'स्वागत समारोह',ic:'✨',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'8:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Black tie',c:['#2b3721','#d6b06a'],note:'Dinner, toasts and dancing.'},
- {n:'Phera · The Wedding',k:'phera',sh:'Phera',hi:'फेरे',ic:'🔥',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'2:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Traditional Indian',c:['#9b2c2c','#d6b06a'],note:'Seven vows around the sacred fire.',star:true}];
+ {n:'Panigrahan / Phere',k:'phera',sh:'Panigrahan / Phere',hi:'पाणिग्रहण / फेरे',ic:'🔥',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'2:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Traditional Indian',c:['#9b2c2c','#d6b06a'],note:'Seven vows around the sacred fire.',star:true}];
 const CARD=(e,i)=>`<article class="ev rv${e.star?' star':''}"><div class="il" style="--c:${e.c[1]}"><img src="${ART[e.k]}" alt="Akshay and Shristy at the ${e.sh||e.n}" decoding="async" draggable="false">${FX(e.k)}</div><div class="l"><div class="top"><span>Boarding pass ${String(i+1).padStart(2,'0')}/05</span><span>${e.date}${e.tbc?' <span class="tbc">TBC</span>':''}</span></div>
  <h3>${e.n}<small>${e.hi}</small></h3><p>${e.note}</p><div class="meta"><span>🕰 ${e.time}</span><a class="map" href="${VENUE_MAP}" target="_blank" rel="noopener">📍 ${e.where}</a><span><span class="sw"><i style="background:${e.c[0]}"></i><i style="background:${e.c[1]}"></i></span>${e.dress}</span></div></div>
  <div class="r"><div><div class="ic">${e.ic}</div><b>${e.day}</b><span>${e.mon} 2026</span></div></div></article>`;
@@ -726,7 +726,7 @@ const RIT={
    ['Baraat Prasthan','The baraat sets off with music and dancing.'],
    ['Reception','Dinner, toasts and dancing.',1]]},
   {d:'Day 3 · Sun 13 Dec (from 2 AM)',items:[
-   ['Pheras','Seven vows around the sacred fire.',1],
+   ['Panigrahan / Phere','The groom takes the bride\'s hand and the couple take their seven vows around the sacred fire.',1],
    ['Vidaai','The bride\'s farewell from her family.'],
    ['Muhdekhai','The new bride is welcomed home and the family see her face and give blessings and gifts.'],
    ['Kankad Maur','The sacred threads tied on the couple are untied, a playful moment between them.'],
@@ -745,7 +745,7 @@ const RIT={
    ['Baraat Swagat','The family welcomes the groom\'s baraat.',1],
    ['Reception','Dinner, toasts and dancing.',1]]},
   {d:'Day 3 · Sun 13 Dec (from 2 AM)',items:[
-   ['Pheras','Seven vows around the sacred fire.',1],
+   ['Panigrahan / Phere','The groom takes the bride\'s hand and the couple take their seven vows around the sacred fire.',1],
    ['Per Poojna','The family honours the newlyweds with blessings.'],
    ['Vidaai','The bride\'s farewell from her family.']]}]
 };
