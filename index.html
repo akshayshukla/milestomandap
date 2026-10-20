@@ -205,6 +205,7 @@ section{padding-block:80px;position:relative}
 .ck{max-width:620px;margin:30px auto 0;text-align:left;background:var(--card);border-radius:18px;padding:24px;box-shadow:inset 0 0 0 1px rgba(168,121,46,.25)}
 .ck form{display:grid;gap:14px}
 .ck label,.ck .lb{font:500 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ck .rq{color:var(--gold);margin-left:3px;font-weight:600;letter-spacing:0}.ck .opt{margin-left:6px;font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);opacity:.75;font-size:.95em}.arrleg{font:500 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:10px 0 16px}
 .ck input[type=text],.ck input[type=email],.ck select,.ck textarea{width:100%;margin-top:6px;padding:12px 14px;border-radius:10px;border:1px solid rgba(43,55,33,.2);background:#fff;font:1.05rem var(--serif);color:var(--ink)}
 .ck textarea{min-height:84px;resize:vertical}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -467,12 +468,13 @@ section{padding-block:80px;position:relative}
     <div class="arrh"><span>Arrival card</span><span>Flight A♥S 1212 · RJN</span></div>
     <h3 class="arrt">Tell us how you're getting here</h3>
     <p class="arrs">We'll match you with a pickup from Raipur airport, Durg or Rajnandgaon station.</p>
+    <p class="arrleg"><span class="rq">*</span> Required · everything else is optional</p>
     <form id="arrForm" autocomplete="on">
-      <div class="row2"><label>Full name<input type="text" name="name" required maxlength="80" autocomplete="name"></label><label>Phone / WhatsApp<input type="tel" name="phone" required maxlength="25" autocomplete="tel" placeholder="+91 or +1 …"></label></div>
-      <div class="row2"><label>Guests in your party<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label><label>Arriving at<select name="arrivingAt"><option>Raipur airport (RPR)</option><option>Durg Junction (DURG)</option><option>Rajnandgaon station (RJN)</option><option>Driving in / own arrangement</option></select></label></div>
-      <div class="row2"><label>Arrival date<input type="date" name="arrivalDate" min="2026-12-05" max="2026-12-12" value="2026-12-11"></label><label>Arrival time<input type="time" name="arrivalTime"></label></div>
-      <label>Flight / train number<input type="text" name="travelNo" maxlength="40" placeholder="e.g. 6E 123 or 12809"></label>
-      <div class="row2"><label>Departure date<input type="date" name="departureDate" min="2026-12-12" max="2026-12-20" value="2026-12-13"></label><label>Departure time<input type="time" name="departureTime"></label></div>
+      <div class="row2"><label>Full name<span class="rq">*</span><input type="text" name="name" required maxlength="80" autocomplete="name"></label><label>Phone / WhatsApp<span class="rq">*</span><input type="tel" name="phone" required maxlength="25" autocomplete="tel" placeholder="+91 or +1 …"></label></div>
+      <div class="row2"><label>Guests in your party<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label><label>Arriving at<span class="rq">*</span><select name="arrivingAt" required><option>Raipur airport (RPR)</option><option>Durg Junction (DURG)</option><option>Rajnandgaon station (RJN)</option><option>Driving in / own arrangement</option></select></label></div>
+      <div class="row2"><label>Arrival date<span class="rq">*</span><input type="date" name="arrivalDate" required min="2026-12-05" max="2026-12-12" value="2026-12-11"></label><label>Arrival time<span class="opt">(optional)</span><input type="time" name="arrivalTime"></label></div>
+      <label>Flight / train number<span class="opt">(optional)</span><input type="text" name="travelNo" maxlength="40" placeholder="e.g. 6E 123 or 12809"></label>
+      <div class="row2"><label>Departure date<span class="opt">(optional)</span><input type="date" name="departureDate" min="2026-12-12" max="2026-12-20" value="2026-12-13"></label><label>Departure time<span class="opt">(optional)</span><input type="time" name="departureTime"></label></div>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit" id="arrBtn">Submit arrival card ✈</button>
       <p class="arrErr" id="arrErr" role="alert" hidden></p>
