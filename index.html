@@ -176,6 +176,7 @@ section{padding-block:80px;position:relative}
 .ev h3{margin:0;font:500 1.9rem/1.05 var(--serif)}
 .ev h3 small{font:15px var(--deva);color:var(--gold);margin-left:8px}
 .ev p{margin:0;color:var(--ink2);font-size:1rem}
+.ev .code{margin:2px 0 0;font:italic .95rem/1.4 var(--serif);color:var(--ink2);background:rgba(168,121,46,.09);border-left:2px solid var(--gold2);padding:8px 12px;border-radius:0 8px 8px 0}
 .ev .meta a.map{all:unset;cursor:pointer;font:inherit;color:inherit;letter-spacing:normal;text-transform:none;text-decoration:underline;text-decoration:underline;text-decoration-color:rgba(168,121,46,.6);text-underline-offset:3px}.ev .meta a.map:hover{color:var(--gold)}
 .ev .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font:500 12px var(--ui);color:var(--ink2)}
 .ev .sw{display:inline-flex;gap:4px;vertical-align:middle;margin-right:6px}.ev .sw i{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
@@ -440,7 +441,7 @@ section{padding-block:80px;position:relative}
 <section class="wrap center" id="events">
   <div class="cap rv tr" data-i="evK">The itinerary</div>
   <h2 class="rv">Five <em>celebrations</em></h2>
-  <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon. Timings to be announced.</p>
+  <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon.</p>
   <div class="optC"><div class="passes deck" id="passesC"></div><div class="dots" id="dotsC" aria-hidden="true"></div><p class="swipeh">Swipe for all 5 →</p></div>
   <details class="flane rv" id="flane">
     <summary><span class="fk">✈ Family lane</span><span class="ft">Rituals &amp; poojas</span><span class="fo">Tap to view</span><i class="fx2" aria-hidden="true"></i></summary>
@@ -666,13 +667,13 @@ const FX=(function(){
  return k=>`<svg class="fx" viewBox="0 0 200 230" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${M[k]||''}</svg>`;
 })();
 const EV=[
- {n:'Mehendi',k:'mehendi',hi:'मेहंदी',ic:'🌿',date:'Fri 11 Dec',day:'11',mon:'DEC',time:'2:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Greens & pastels',c:['#7d9473','#f3c6c0'],note:'Henna, music and chai.'},
- {n:'Sangeet',k:'sangeet',hi:'संगीत',ic:'💃',date:'Fri 11 Dec',day:'11',mon:'DEC',time:'6:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Festive glam',c:['#5a3e6b','#d6b06a'],note:'Two families, one dance floor.'},
- {n:'Haldi',k:'haldi',hi:'हल्दी',ic:'🌼',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'11:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Sunshine yellow',c:['#e9c46a','#fff2c2'],note:'Turmeric, marigolds and laughter.'},
- {n:'Reception',k:'reception',hi:'स्वागत समारोह',ic:'✨',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'8:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Black tie',c:['#2b3721','#d6b06a'],note:'Dinner, toasts and dancing.'},
- {n:'Panigrahan / Phere',k:'phera',sh:'Panigrahan / Phere',hi:'पाणिग्रहण / फेरे',ic:'🔥',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'2:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Traditional Indian',c:['#9b2c2c','#d6b06a'],note:'Seven vows around the sacred fire.',star:true}];
+ {n:'Henna, Bolo Bolo!',k:'mehendi',hi:'मेहंदी',sh:'Mehendi',ic:'🌿',date:'Fri 11 Dec',day:'11',mon:'DEC',time:'2:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Shades of green',c:['#4a9e5c','#7d9473'],note:'The Mehendi Celebration',code:'Colour code — the only rule? Show up in your favourite shade of green! 💚'},
+ {n:'Raat Baaki, Baat Baaki',k:'sangeet',hi:'संगीत',sh:'Sangeet',ic:'💃',date:'Fri 11 Dec',day:'11',mon:'DEC',time:'6:00 PM',where:'The Bliss International, Rajnandgaon',dress:'Glitz & glam',c:['#5a3e6b','#d6b06a'],note:'The Sangeet Night',code:'Dress code — glitz, glam & all that jazz. Subtle is cancelled; bring the bling! ✨'},
+ {n:'Bahaaron Phool Barsaao',k:'haldi',hi:'हल्दी',sh:'Haldi',ic:'🌼',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'11:30 AM',where:'The Bliss International, Rajnandgaon',dress:'All yellow',c:['#e9c46a','#fff2c2'],note:'The Haldi Ceremony',code:'Colour code — from pastel to mustard, every shade is welcome, as long as it\'s yellow! 💛'},
+ {n:'Tere Mere Milan Ki Yeh Raina',k:'reception',hi:'वरमाला · स्वागत',sh:'Varmala & Reception',ic:'🥂',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'Baraat 7 PM · Reception 8 PM',where:'The Bliss International, Rajnandgaon',dress:'Your style, your choice',c:['#2b3721','#d6b06a'],note:'The Varmala & Reception Celebration',code:'Dress code — your style, your choice! Indian, Western or Indo-Western, whatever makes you feel fabulous. No colour codes, no rules — your presence is the most beautiful gift to us. 🎉'},
+ {n:'Janam Janam Ka Saath Hai',k:'phera',hi:'पाणिग्रहण / फेरे',sh:'Panigrahan / Phere',ic:'🔥',date:'Sat 12 Dec',day:'12',mon:'DEC',time:'2:30 AM',where:'The Bliss International, Rajnandgaon',dress:'Comfy Indian ethnic',c:['#9b2c2c','#d6b06a'],note:'Pheras & Panigrahan Sanskar',code:'Dress code — comfy Indian ethnic. Slip into your desi best, grab a cup of chai or coffee, and stay up with us for the seven sacred vows. 🧿',star:true}];
 const CARD=(e,i)=>`<article class="ev rv${e.star?' star':''}"><div class="il" style="--c:${e.c[1]}"><img src="${ART[e.k]}" alt="Akshay and Shristy at the ${e.sh||e.n}" decoding="async" draggable="false">${FX(e.k)}</div><div class="l"><div class="top"><span>Boarding pass ${String(i+1).padStart(2,'0')}/05</span><span>${e.date}${e.tbc?' <span class="tbc">TBC</span>':''}</span></div>
- <h3>${e.n}<small>${e.hi}</small></h3><p>${e.note}</p><div class="meta"><span>🕰 ${e.time}</span><a class="map" href="${VENUE_MAP}" target="_blank" rel="noopener">📍 ${e.where}</a><span><span class="sw"><i style="background:${e.c[0]}"></i><i style="background:${e.c[1]}"></i></span>${e.dress}</span></div></div>
+ <h3>${e.n}<small>${e.hi}</small></h3><p>${e.note}</p>${e.code?'<p class="code">'+e.code+'</p>':''}<div class="meta"><span>🕰 ${e.time}</span><span><span class="sw"><i style="background:${e.c[0]}"></i><i style="background:${e.c[1]}"></i></span>${e.dress}</span></div></div>
  <div class="r"><div><div class="ic">${e.ic}</div><b>${e.day}</b><span>${e.mon} 2026</span></div></div></article>`;
 $('#passesC').innerHTML=EV.map(CARD).join('');
 (function(){const d=$('#passesC'),dots=$('#dotsC');dots.innerHTML=EV.map(()=>'<i></i>').join('');
