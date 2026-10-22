@@ -75,6 +75,10 @@ section{padding-block:80px;position:relative}
 .op.open .hint{opacity:0}
 .op.fly .stamps,.op.fly .pp{transform:translateY(-8vh) scale(.6) rotate(-6deg);opacity:0;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s .2s}
 .op.fly{background:transparent;transition:background .8s}
+.op.ready{cursor:pointer}
+.op.ready .hint{opacity:.9;animation:hintpulse 1.8s ease-in-out infinite}
+.op.fly .hint{opacity:0;animation:none}
+@keyframes hintpulse{0%,100%{opacity:.55}50%{opacity:.95}}
 
 /* ===== top controls ===== */
 .ctl{position:fixed;z-index:50;top:calc(12px + env(safe-area-inset-top,0px));right:12px;display:flex;gap:8px}
@@ -401,7 +405,7 @@ section{padding-block:80px;position:relative}
 <header class="hero wrap" id="hero">
   <div class="logo" id="logo" role="img" aria-label="A heart S monogram between the New York and India skylines, #MilesToMandap"></div>
   <h1 class="names reveal">Akshay<i>&amp;</i>Shristy</h1>
-  <p class="req reveal tr" data-i="req">Together with the Shukla and Pachori families, invite you to celebrate their wedding</p>
+  <p class="req reveal tr" data-i="req">together with the Shukla and Pachori families, invite you to celebrate their wedding on</p>
   <div class="strip reveal"><span>Saturday</span><span>12 December 2026</span><span>Rajnandgaon</span></div>
   <div class="clocks reveal">
     <div class="clk"><svg viewBox="0 0 100 100" id="clkNY" aria-hidden="true"></svg><b>New York</b><span id="tNY">--:--</span></div>
@@ -449,8 +453,8 @@ section{padding-block:80px;position:relative}
 <!-- EVENTS -->
 <section class="wrap center" id="events">
   <div class="cap rv tr" data-i="evK">The itinerary</div>
-  <h2 class="rv">Five <em>celebrations</em></h2>
-  <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon.</p>
+  <h2 class="rv">Two Days, <em>Five Celebrations</em></h2>
+  <p class="lede rv">all at The Bliss International, Rajnandgaon.</p>
   <p class="swipeh rv">Tap through all 5 →</p>
   <div class="storywrap rv"><iframe id="storyFrame" class="storyframe" src="stories.html" title="Our wedding in stories" loading="lazy"></iframe></div>
   <details class="flane rv" id="flane">
@@ -575,8 +579,8 @@ $('#cover').addEventListener('click',()=>{const op=$('#op');if(op.classList.cont
  [['.fs1',1250,'scale(2.4) rotate(-26deg)','scale(1) rotate(-9deg)',.82],['.fs2',1850,'scale(2.4) rotate(24deg)','scale(1) rotate(8deg)',.82],['#op .stamp',2450,'scale(2.4) rotate(-30deg)','scale(1) rotate(-14deg)',.85]].forEach(([q,t,from,to,o])=>setTimeout(()=>{const el=$(q);
   el.classList.add('on'); // final, visible state first: the stamp shows even if the zoom below does not run
   if(!RM&&el.animate)try{el.animate([{opacity:0,transform:from},{opacity:o,transform:to}],{duration:480,easing:'cubic-bezier(.3,1.6,.5,1)'})}catch(e){}},RM?0:t));
- setTimeout(()=>{op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s')},RM?3800:5600);
- setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');toTop();$('#hero').classList.add('go')},RM?3900:6500)});
+ let gone=false;const proceed=()=>{if(gone)return;gone=true;op.classList.add('fly');Confetti.burst(innerWidth/2,innerHeight*.45,120,GOLD,'s');setTimeout(()=>{op.hidden=true;document.body.classList.remove('locked');toTop();$('#hero').classList.add('go')},RM?120:1000)};
+ setTimeout(()=>{const h=$('#op .hint');if(h)h.textContent='Tap to continue →';op.classList.add('ready');op.addEventListener('click',proceed)},RM?200:3150)});
 /* ---------- clocks ---------- */
 function face(svg){let s='<circle cx="50" cy="50" r="46" fill="#fbf7f0" stroke="#a8792e" stroke-width="1.5"/><circle cx="50" cy="50" r="41" fill="none" stroke="#a8792e" stroke-opacity=".35"/>';for(let i=0;i<12;i++){const a=i*Math.PI/6;s+=`<line x1="${50+Math.sin(a)*36}" y1="${50-Math.cos(a)*36}" x2="${50+Math.sin(a)*(i%3?38:33)}" y2="${50-Math.cos(a)*(i%3?38:33)}" stroke="#2b3721" stroke-width="${i%3?1:2}"/>`}
  s+='<line class="h" x1="50" y1="50" x2="50" y2="28" stroke="#2b3721" stroke-width="3" stroke-linecap="round"/><line class="m" x1="50" y1="50" x2="50" y2="18" stroke="#2b3721" stroke-width="2" stroke-linecap="round"/><line class="s" x1="50" y1="56" x2="50" y2="14" stroke="#a8792e" stroke-width="1"/><circle cx="50" cy="50" r="3" fill="#a8792e"/>';svg.innerHTML=s}
@@ -629,16 +633,17 @@ const CH=[
  {k:'Chapter 01 · Where it all began',h:'Two little worlds, miles apart',p:'Once upon a time, a little girl grew up in Bhopal, "The City of Lakes," while a little boy called Rajnandgaon home. Two different childhoods, two families, and countless dreams — little did they know that somewhere in the pages ahead, their stories were meant to meet.'},
  {k:'Chapter 02 · The unexpected chapter',h:'Of chai, coffee & a little bhindi',p:'She was a chai person; he belonged to team coffee. Yet somewhere between their differences, endless conversations, and a surprisingly shared love for bhindi, two strangers found a little world of their own — one that soon made room for each other\'s friends, families, and dreams.'},
  {k:'Chapter 03 · Love across time zones',h:'When even miles felt a little closer',p:'New York had his mornings while Bhopal had her evenings. From calls across oceans to a roka celebrated through screens, every milestone found its own unusual way of happening. The distance may have kept them in different countries, but it brought their two worlds wonderfully close.'},
- {k:'Chapter 04 · The mandap & beyond',h:'The miles finally lead home',p:'On 12 December 2026, all roads lead to Rajnandgaon — where his story first began, and theirs will begin together. With both families and their dearest friends beside them, the miles finally reach the mandap, where two separate journeys become one — all the way to New York.'}];
+ {k:'Chapter 04 · The mandap & beyond',h:'The miles finally lead home',p:'On 12 December 2026, all roads lead to Rajnandgaon — where his story first began, and theirs will begin together. With both families and their dearest friends beside them, the miles finally reach the mandap, where two separate journeys become one.'}];
 $('#chs').innerHTML=CH.map(c=>`<div class="ch"><span class="cap">${c.k}</span><h3>${c.h}</h3><p>${c.p}</p></div>`).join('');
-const chs=$$('.ch');let lastC=-1,landed=false;
-function flight(){const s=$('#flight'),r=s.getBoundingClientRect(),tot=s.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/tot));
- RT.forEach(o=>{const q=Math.min(1,Math.max(0,(p-o.from)/(1-o.from)));const d=q*o.L;o.el.style.strokeDashoffset=o.L-d;
+const chs=$$('.ch');let lastC=-1,landed=false,intro=0,introStarted=false,introT0=0;
+function introTick(now){const t=Math.min(1,(now-introT0)/1500);intro=1-Math.pow(1-t,3);flight();if(t<1)requestAnimationFrame(introTick);}
+function flight(){const s=$('#flight'),r=s.getBoundingClientRect(),tot=s.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/tot));if(!introStarted&&r.top<=0&&r.bottom>innerHeight){introStarted=true;introT0=performance.now();if(RM)intro=1;else requestAnimationFrame(introTick);}const pf=Math.min(1,Math.max(0,0.45*intro+p*0.6));
+ RT.forEach(o=>{const q=Math.min(1,Math.max(0,(pf-o.from)/(1-o.from)));const d=q*o.L;o.el.style.strokeDashoffset=o.L-d;
   const pt=o.el.getPointAtLength(Math.max(.1,Math.min(o.L-1,d))),pt2=o.el.getPointAtLength(Math.min(o.L,Math.max(.1,d)+1));const ang=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
   o.pl.setAttribute('transform',`translate(${pt.x} ${pt.y}) rotate(${ang}) scale(${-o.sc} ${o.sc}) translate(-9 0)`);o.pl.style.opacity=q>0||o.from===0?1:0;
   o.out.textContent=Math.round(o.km*(1-q)).toLocaleString('en-IN')});
  const c=Math.min(3,Math.floor(p*4.0001));if(c!==lastC){chs.forEach((e,i)=>e.classList.toggle('on',i===c));lastC=c}
- if(p>.985&&!landed){landed=true;const e=RT[0].el.getPointAtLength(RT[0].L);$('#hearts').innerHTML=`<path transform="translate(${e.x} ${e.y-26}) scale(${MOB?2:1.1})" d="M0 12s-14-9-14-19a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 10-14 19-14 19z" fill="#df9e93"/>`;
+ if(pf>.995&&!landed){landed=true;const e=RT[0].el.getPointAtLength(RT[0].L);$('#hearts').innerHTML=`<path transform="translate(${e.x} ${e.y-26}) scale(${MOB?2:1.1})" d="M0 12s-14-9-14-19a7 7 0 0 1 14-3 7 7 0 0 1 14 3c0 10-14 19-14 19z" fill="#df9e93"/>`;
   const m=fm.getScreenCTM();const sx2=m?m.a*e.x+m.e:innerWidth*.8,sy2=m?m.d*e.y+m.f:innerHeight*.6;Confetti.burst(sx2,sy2,70,GOLD,'o')}}
 addEventListener('scroll',flight,{passive:true});addEventListener('resize',flight);flight();
 /* ---------- scratch ---------- */
