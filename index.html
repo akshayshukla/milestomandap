@@ -444,7 +444,8 @@ section{padding-block:80px;position:relative}
   <div class="cap rv tr" data-i="evK">The itinerary</div>
   <h2 class="rv">Five <em>celebrations</em></h2>
   <p class="lede rv">Two days, five celebrations, all at The Bliss International, Rajnandgaon.</p>
-  <div class="optC"><div class="passes deck" id="passesC"></div><div class="dots" id="dotsC" aria-hidden="true"></div><p class="swipeh">Swipe for all 5 →</p></div>
+  <p class="swipeh rv">Tap through all 5 →</p>
+  <div class="storywrap rv"><iframe id="storyFrame" class="storyframe" src="stories.html" title="Our wedding in stories" loading="lazy"></iframe></div>
   <details class="flane rv" id="flane">
     <summary><span class="fk">✈ Family lane</span><span class="ft">Rituals &amp; poojas</span><span class="fo">Tap to view</span><i class="fx2" aria-hidden="true"></i></summary>
     <div class="fbody">
@@ -454,14 +455,6 @@ section{padding-block:80px;position:relative}
       <div class="fpanel" id="fp-b" role="tabpanel" hidden></div>
     </div>
   </details>
-</section>
-
-<!-- STORIES (comparison · remove one once decided) -->
-<section class="wrap center" id="events2">
-  <div class="cap rv tr">Also trying · tap through</div>
-  <h2 class="rv">Our wedding, in <em>stories</em></h2>
-  <p class="lede rv">The same five celebrations as a tap-through story reel — compare it with the swipe cards above.</p>
-  <div class="storywrap rv"><iframe id="storyFrame" class="storyframe" src="stories.html" title="Our wedding in stories" loading="lazy"></iframe></div>
 </section>
 
 <!-- TRAVEL -->
@@ -685,8 +678,8 @@ const EV=[
 const CARD=(e,i)=>`<article class="ev rv${e.star?' star':''}"><div class="il" style="--c:${e.c[1]}"><img src="${ART[e.k]}" alt="Akshay and Shristy at the ${e.sh||e.n}" decoding="async" draggable="false">${FX(e.k)}</div><div class="l"><div class="top"><span>Boarding pass ${String(i+1).padStart(2,'0')}/05</span><span>${e.date}${e.tbc?' <span class="tbc">TBC</span>':''}</span></div>
  <h3>${e.n}<small>${e.hi}</small></h3><p>${e.note}</p>${e.code?'<p class="code">'+e.code+'</p>':''}<div class="meta"><span>🕰 ${e.time}</span><span><span class="sw"><i style="background:${e.c[0]}"></i><i style="background:${e.c[1]}"></i></span>${e.dress}</span></div></div>
  <div class="r"><div><div class="ic">${e.ic}</div><b>${e.day}</b><span>${e.mon} 2026</span></div></div></article>`;
-$('#passesC').innerHTML=EV.map(CARD).join('');
-(function(){const d=$('#passesC'),dots=$('#dotsC');dots.innerHTML=EV.map(()=>'<i></i>').join('');
+if($('#passesC'))$('#passesC').innerHTML=EV.map(CARD).join('');
+(function(){const d=$('#passesC'),dots=$('#dotsC');if(!d||!dots)return;dots.innerHTML=EV.map(()=>'<i></i>').join('');
  const upd=()=>{const cs=[...d.children];let best=0,bd=1e9;const mid=d.scrollLeft+d.clientWidth/2;cs.forEach((c,k)=>{const m=c.offsetLeft+c.offsetWidth/2;const dd=Math.abs(m-mid);if(dd<bd){bd=dd;best=k}});[...dots.children].forEach((x,k)=>x.classList.toggle('on',k===best))};
  d.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});upd()})();
 $('#rows').innerHTML=EV.map(e=>`<div><span>${e.date.split(' ').slice(1).join(' ').toUpperCase()}</span><span>${(e.sh||e.n).toUpperCase()}</span><span class="${e.star?'ok':''}">${e.star?'BOARDING':'SCHEDULED'}</span></div>`).join('');
