@@ -177,6 +177,8 @@ section{padding-block:80px;position:relative}
 .ev h3 small{font:15px var(--deva);color:var(--gold);margin-left:8px}
 .ev p{margin:0;color:var(--ink2);font-size:1rem}
 .ev .code{margin:2px 0 0;font:italic .95rem/1.4 var(--serif);color:var(--ink2);background:rgba(168,121,46,.09);border-left:2px solid var(--gold2);padding:8px 12px;border-radius:0 8px 8px 0}
+.storywrap{display:flex;justify-content:center;margin-top:10px}
+.storyframe{width:min(460px,94vw);height:820px;border:0;overflow:hidden;background:transparent;display:block}
 .ev .meta a.map{all:unset;cursor:pointer;font:inherit;color:inherit;letter-spacing:normal;text-transform:none;text-decoration:underline;text-decoration:underline;text-decoration-color:rgba(168,121,46,.6);text-underline-offset:3px}.ev .meta a.map:hover{color:var(--gold)}
 .ev .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font:500 12px var(--ui);color:var(--ink2)}
 .ev .sw{display:inline-flex;gap:4px;vertical-align:middle;margin-right:6px}.ev .sw i{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
@@ -452,6 +454,14 @@ section{padding-block:80px;position:relative}
       <div class="fpanel" id="fp-b" role="tabpanel" hidden></div>
     </div>
   </details>
+</section>
+
+<!-- STORIES (comparison · remove one once decided) -->
+<section class="wrap center" id="events2">
+  <div class="cap rv tr">Also trying · tap through</div>
+  <h2 class="rv">Our wedding, in <em>stories</em></h2>
+  <p class="lede rv">The same five celebrations as a tap-through story reel — compare it with the swipe cards above.</p>
+  <div class="storywrap rv"><iframe id="storyFrame" class="storyframe" src="stories.html" title="Our wedding in stories" loading="lazy"></iframe></div>
 </section>
 
 <!-- TRAVEL -->
@@ -768,4 +778,5 @@ const RIT={
 })();
 </script>
 
+<script>addEventListener('message',function(e){if(e&&e.data&&e.data.srH){var f=document.getElementById('storyFrame');if(f){f.style.height=Math.max(560,Math.min(1120,e.data.srH))+'px';}}});</script>
 </body></html>
