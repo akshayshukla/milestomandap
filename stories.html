@@ -25,10 +25,11 @@ img{display:block;max-width:100%}
  background:#000;box-shadow:0 30px 70px -28px rgba(43,55,33,.7),0 0 0 7px #1c231a,0 0 0 8px rgba(214,176,106,.5);touch-action:pan-y}
 .slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s}
 .slide.on{opacity:1;pointer-events:auto}
-.slide .ph{position:absolute;inset:0;overflow:hidden}
-.slide .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transform:scale(1.02)}
-.slide.on .ph img{animation:kb 7s ease-out forwards}
-@keyframes kb{to{transform:scale(1.12)}}
+.slide .ph{position:absolute;inset:0;overflow:hidden;background:#0c0c0c}
+.slide .ph .bgi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(30px) brightness(.5) saturate(.95);transform:scale(1.15)}
+.slide .ph .fgi{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 30%}
+.slide.on .ph .bgi{animation:kb 8s ease-out forwards}
+@keyframes kb{to{transform:scale(1.24)}}
 .slide .scrim{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.12) 15%,rgba(0,0,0,0) 34%,rgba(0,0,0,.0) 44%,var(--sc1) 74%,var(--sc2) 100%)}
 .cap{position:absolute;left:22px;right:22px;bottom:30px;color:#fff;z-index:3;transform:translateY(10px);opacity:0}
@@ -91,7 +92,7 @@ img{display:block;max-width:100%}
    <div class="topbar"><div class="mono"><span class="av">A·S</span><span id="ev">Mehendi</span></div><span class="em" id="em">🌿</span></div>
    <div id="slides"></div>
    <div class="endc" id="endc">
-     <div class="sc">The miles lead home</div>
+     <div class="sc">The miles end here</div>
      <div class="ns">Akshay & Shristy</div>
      <div class="dt">11–12 Dec 2026 · Rajnandgaon</div>
      <div class="tag">#MilesToMandap</div>
@@ -114,7 +115,7 @@ const dotsEl=document.getElementById('dots');
 EV.forEach((e,i)=>{
  const s=document.createElement('div');s.className='slide';
  s.style.setProperty('--sc1',e.deep+'d9');s.style.setProperty('--sc2',e.deep);s.style.setProperty('--acl',e.accent);
- s.innerHTML=`<div class="ph"><img src="${e.img}" alt="${e.formal}"></div><div class="scrim"></div>
+ s.innerHTML=`<div class="ph"><img class="bgi" src="${e.img}" alt=""><img class="fgi" src="${e.img}" alt="${e.formal}"></div><div class="scrim"></div>
  <div class="cap"><div class="kick"><b>${e.day}</b> &nbsp;·&nbsp; ${e.formal}</div>
  <h2>${e.title}</h2><div class="hi">${e.hi}</div>
  <div class="row"><span class="pill t">🕰 ${e.time}</span><span class="pill d">👗 ${e.dress}</span></div>
